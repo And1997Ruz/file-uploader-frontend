@@ -13,7 +13,6 @@ export const uploadImages = async (files: File[]): Promise<string> => {
 }
 
 export const fetchAllImages = async (): Promise<ImageWithMetadata[]> => {
-    console.log('base', BASE_URL);
     const response = await axios.get(`${BASE_URL}/images`);
     return response.data;
 }
