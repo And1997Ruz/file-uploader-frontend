@@ -1,30 +1,49 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <Notification />
   <router-view/>
 </template>
 
+<script lang="ts" setup>
+import Notification from "@/components/ui/Notification.vue"
+
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+$darkGrey: #343434;
+
+body,html {
+  margin: 0;
+  padding: 0;
 }
 
-nav {
-  padding: 30px;
+body{
+  padding-top: 20px;
+}
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  ::selection{
+    background-color: grey;
+  }
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+
+  &:hover{
+    background-color: $darkGrey;
   }
 }
 </style>

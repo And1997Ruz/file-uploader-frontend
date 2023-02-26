@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+    <Dropzone />
+    <ImageList v-if="!!images.length"/>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script lang="ts" setup>
+import Dropzone from "../components/dropzone/Dropzone.vue"
+import { computed, onMounted } from "vue";
+import { useImagesStore } from "@/store/ImagesStore";
+import ImageList from "@/components/images/ImagesList"
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
-});
+const imagesStore = useImagesStore();
+
+const images = computed(() => {
+  return imagesStore.images;
+})
+
+onMounted(async () => {
+  await imagesStore.getAllImages();
+})
 </script>
+
+<style>
+.container{
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
