@@ -1,19 +1,3 @@
 # file-uploader-frontend
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Built with Vue 3. Drag and Drop images to upload. Can also view images' metadata after uploading All the files are stored on the disk. Database is not being used in this application.
