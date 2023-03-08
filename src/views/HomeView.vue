@@ -1,29 +1,29 @@
 <template>
   <div class="container">
     <Dropzone />
-    <ImageList v-if="!!images.length"/>
+    <ImageList v-if="!!images.length" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import Dropzone from "../components/dropzone/Dropzone.vue"
-import { computed, onMounted } from "vue";
-import { useImagesStore } from "@/store/ImagesStore";
-import ImageList from "@/components/images/ImagesList"
+import Dropzone from '../components/dropzone/Dropzone.vue'
+import { computed, onMounted } from 'vue'
+import { useImagesStore } from '@/store/ImagesStore'
+import ImageList from '@/components/images/ImagesList'
 
-const imagesStore = useImagesStore();
+const imagesStore = useImagesStore()
 
 const images = computed(() => {
-  return imagesStore.images;
+  return imagesStore.images
 })
 
 onMounted(async () => {
-  await imagesStore.getAllImages();
+  await imagesStore.getAllImages()
 })
 </script>
 
 <style>
-.container{
+.container {
   width: 100vw;
   height: 100vh;
   max-width: 100%;

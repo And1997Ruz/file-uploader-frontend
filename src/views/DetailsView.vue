@@ -1,8 +1,8 @@
 <template>
   <div class="container" v-if="!isLoading">
     <div class="image-wrapper">
-      <span>{{imageName}}</span>
-      <img :src="fileSrc"  :alt="fileSrc"/>
+      <span>{{ imageName }}</span>
+      <img :src="fileSrc" :alt="fileSrc" />
     </div>
     <div class="metadata-container" v-if="!!image?.metadata?.length">
       <Metadata :metadata="image.metadata" :key="metadata?.tagName" />
@@ -12,14 +12,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
-import { computed, onMounted, ref } from "vue";
-import { useImagesStore } from "@/store/ImagesStore";
-import Metadata from "@/components/images/Metadata"
-import { ImageWithMetadata } from "@/types";
-import { useAlertStore } from "@/store/AlertsStore";
+import { useRoute } from 'vue-router';
+import { computed, onMounted, ref } from 'vue';
+import { useImagesStore } from '@/store/ImagesStore';
+import Metadata from '@/components/images/Metadata';
+import { ImageWithMetadata } from '@/types';
+import { useAlertStore } from '@/store/AlertsStore';
 
-const BASE_URL = process.env.VUE_APP_BASE_URL || "http://localhost:8080/api";
+const BASE_URL = process.env.VUE_APP_BASE_URL || 'http://localhost:8080/api';
 
 const route = useRoute();
 const imagesStore = useImagesStore();
@@ -29,25 +29,24 @@ const image = ref<ImageWithMetadata>();
 const isLoading = ref<boolean>(false);
 
 const imageName = computed(() => {
-  return route.params?.filename?.toString() || "";
-})
+  return route.params?.filename?.toString() || '';
+});
 
 const fileSrc = computed(() => {
-  return `${BASE_URL}/static/${imageName.value || ""}`
-})
+  return `${BASE_URL}/static/${imageName.value || ''}`;
+});
 
 onMounted(() => {
   isLoading.value = true;
-  imagesStore.getImage(imageName.value)
-      .then(res => image.value = res)
-      .catch((e: Error) => alertsStore.setAlert("error", e.message))
-      .finally(() => isLoading.value = false);
-})
-
+  imagesStore
+    .getImage(imageName.value)
+    .then((res) => (image.value = res))
+    .catch((e: Error) => alertsStore.setAlert('error', e.message))
+    .finally(() => (isLoading.value = false));
+});
 </script>
 
 <style lang="scss" scoped>
-
 .container {
   height: 90vh;
   margin: auto;
@@ -70,7 +69,7 @@ onMounted(() => {
   }
 }
 
-.image-wrapper{
+.image-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
